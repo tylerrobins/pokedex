@@ -24,24 +24,29 @@ type ApiRes struct {
 func getCommand() map[string]cliCommand {
     return map[string]cliCommand{
         "exit": {
-            name:        "exit",
-            description: "Exit the Pokedex",
-            callback:    commandExit,
+            name:           "exit",
+            description:    "Exit the Pokedex",
+            callback:       commandExit,
         },
         "help": {
-            name:        "help",
-            description: "Descibes how to use the Pokedex",
-            callback:    commandHelp,
+            name:           "help",
+            description:    "Descibes how to use the Pokedex",
+            callback:       commandHelp,
         },
         "map": {
-            name:        "map",
-            description: "Gets the next 20 areas",
-            callback:    commandMap,
+            name:           "map",
+            description:    "Gets the next 20 areas",
+            callback:       commandMap,
         },
         "mapb": {
-            name:        "mapb",
-            description: "Gets the previous 20 areas",
-            callback:    commandMapB,
+            name:           "mapb",
+            description:    "Gets the previous 20 areas",
+            callback:       commandMapB,
+        },
+        "explore": {
+            name:           "explore",
+            description:    "Gets pokemon in explored area",
+            callback:       commandExplore,
         },
     }
 }
@@ -53,11 +58,16 @@ func commandExit(cfg *config) error {
 }
 
 func commandHelp(cfg *config) error {
-   fmt.Print(`Welcome to the Pokedex!
+   fmt.Print(`
+Welcome to the Pokedex!
 Usage:
 
 help: Displays a help message
 mapb: Gets list of previous 20 locations
 `)
     return nil
+}
+
+func commandExplore(cfg *config) error {
+
 }
