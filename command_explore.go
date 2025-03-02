@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-func commandExplore(cfg *config, args []string) error {
+func commandExplore(cfg *config, args ...string) error {
+    if len(args) == 0 {
+        fmt.Println("location name/id is required with explore command")
+        return errors.New("No args provided")
+    }
 	fmt.Printf("Exploring %s\n", args[0])
     locationAreaInfoRes, err := cfg.pokeapiClient.GetLocationInfo(args[0])
     if err != nil {

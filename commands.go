@@ -8,7 +8,7 @@ import (
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(cfg *config, args []string) error
+	callback    func(cfg *config, args ...string) error
 }
 
 type ApiRes struct {
@@ -48,22 +48,29 @@ func getCommand() map[string]cliCommand {
             description:    "Gets pokemon in explored area",
             callback:       commandExplore,
         },
+        "catch": {
+            name:           "catch",
+            description:    "Attemptes to catch pokemon",
+            callback:       commandCatch,
+        },
     }
 }
 
-func commandExit(cfg *config, args []string) error {
+func commandExit(cfg *config, args ...string) error {
     fmt.Println("Closing the Pokedex... Goodbye!")
     os.Exit(0)
     return nil
 }
 
-func commandHelp(cfg *config, args []string) error {
+func commandHelp(cfg *config, args ...string) error {
+    commands := getCommand()
    fmt.Print(`
 Welcome to the Pokedex!
 Usage:
-
-help: Displays a help message
-mapb: Gets list of previous 20 locations
 `)
+    for _, com:= range commands {
+       fmt.Printf(" - %s        %s\n", com.name, com.description) 
+    } 
+    fmt.Println("")
     return nil
 }

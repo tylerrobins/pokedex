@@ -1,8 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func commandMap(cfg *config, args []string) error {
+func commandMap(cfg *config, args ...string) error {
     areasListRes, err := cfg.pokeapiClient.GetLocationAreasList(cfg.nextLocationAreaURL)
     if err != nil {
         return err
@@ -16,7 +18,7 @@ func commandMap(cfg *config, args []string) error {
     return nil
 }
 
-func commandMapB(cfg *config, args []string) error {
+func commandMapB(cfg *config, args ...string) error {
     if cfg.prevLocationAreaURL == nil {
         fmt.Println("you're on the first page")
         return nil
