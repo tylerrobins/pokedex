@@ -25,7 +25,7 @@ func startRepl(cfg *config){
             fmt.Printf("Invalid command: %s, try `help` for a list of commands\n", cleaned[0])
             continue
         }
-        command.callback(cfg)
+        command.callback(cfg, cleaned[1:])
     }
 }
 
