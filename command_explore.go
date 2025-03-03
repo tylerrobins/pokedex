@@ -7,7 +7,7 @@ import (
 
 func commandExplore(cfg *config, args ...string) error {
     if len(args) == 0 {
-        fmt.Println("location name/id is required with explore command")
+        fmt.Println("location `name` or `id` is required with explore command")
         return errors.New("No args provided")
     }
 	fmt.Printf("Exploring %s\n", args[0])

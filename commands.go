@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 )
 
 type cliCommand struct {
@@ -53,6 +54,11 @@ func getCommand() map[string]cliCommand {
             description:    "Attemptes to catch pokemon",
             callback:       commandCatch,
         },
+        "inspect": {
+            name:           "inspect",
+            description:    "Inspects the caught pokemon",
+            callback:       commandInspect,
+        },
     }
 }
 
@@ -64,12 +70,26 @@ func commandExit(cfg *config, args ...string) error {
 
 func commandHelp(cfg *config, args ...string) error {
     commands := getCommand()
-   fmt.Print(`
-Welcome to the Pokedex!
-Usage:
-`)
-    for _, com:= range commands {
-       fmt.Printf(" - %s        %s\n", com.name, com.description) 
+
+    // get command list
+    var commandList []string 
+    for name := range commands {
+        commandList = append(commandList, name)
+    }
+    sort.Strings(commandList)
+
+    fmt.Print("Welcome to the Pokedex!\nUsage:\n")
+    
+    // find longest name for formatting
+    maxLen := 0
+    for _, name := range commandList {
+        if len(name) > maxLen { maxLen = len(name) }
+    }
+
+    // print commands 
+    for _, name := range commandList {
+        com := commands[name]
+        fmt.Printf("- %-*s      %s\n", maxLen, com.name, com.description) 
     } 
     fmt.Println("")
     return nil
