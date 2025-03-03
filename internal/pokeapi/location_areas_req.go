@@ -65,7 +65,7 @@ func (c *Client) GetLocationInfo(area string) (LocationAreaInfoRes, error) {
     // request data
     req, err := http.NewRequest("GET", fullUrl, nil)
     if err != nil {
-        return LocationAreaInfoRes{}, err 
+        return LocationAreaInfoRes{}, nil
     }
     res, err := c.httpClient.Do(req)
     if err != nil {

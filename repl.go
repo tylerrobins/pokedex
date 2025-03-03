@@ -11,6 +11,7 @@ import (
 func startRepl(cfg *config){
     avalCommands := getCommand()
     scanner := bufio.NewScanner(os.Stdin)
+    avalCommands["clear"].callback(cfg,"")
     for {
         fmt.Print("Pokedex > ") 
         scanner.Scan()

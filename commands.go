@@ -64,6 +64,11 @@ func getCommand() map[string]cliCommand {
             description:    "Lists all pokemon in your pokedex",
             callback:       commandPokedex,
         },
+        "clear": {
+            name:           "clear",
+            description:    "Clears terminal",
+            callback:       commandClear,
+        },
     }
 }
 
