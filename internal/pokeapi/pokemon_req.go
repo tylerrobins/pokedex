@@ -17,6 +17,7 @@ func (c *Client) GetPokemonInfo(name string) (Pokemon, error) {
         if err := json.Unmarshal(body, &pokemon); err != nil {
             return Pokemon{}, err
         }
+        return pokemon, nil
     }
     fmt.Println("cache miss!")
 
